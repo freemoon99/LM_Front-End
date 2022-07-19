@@ -1,8 +1,12 @@
+import CreateForm from "../components/forms/CreateForm";
+import Header from "../components/Header"
+
 const CreatePage = () => {
     return(
-        <>
-            <h2>작성하기 페이지</h2>
-        </>
+        <div className="CreatePage">
+            <Header></Header>
+            <CreateForm></CreateForm>
+        </div>
     );
 }
 
