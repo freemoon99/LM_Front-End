@@ -1,0 +1,122 @@
+.signBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sendEmail{
+    display: flex;
+    flex-direction: row;
+    width: 20.5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    border-bottom: 1px solid;
+}
+
+.pwConfirm{
+    display: flex;
+    flex-direction: row;
+    width: 20.5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    border-bottom: 1px solid;
+}
+
+#name{
+    border: 0px solid;
+    border-bottom: 1px solid;
+    width: 20%;
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    /* box-shadow: 0px 2px 2px gray; */
+}
+
+#email{
+    border: 0px solid;
+    width: 82%;
+    font-size: larger;
+    margin-bottom: 1%;
+    /* box-shadow: 0px 2px 2px gray; */
+}
+
+#certification{
+    border: 0px solid;
+    width: 82%;
+    font-size: larger;
+    margin-bottom: 1%;
+    /* box-shadow: 0px 2px 2px gray; */
+}
+
+#password{
+    border: 0px solid;
+    border-bottom: 1px solid;
+    width: 20%;
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    /* box-shadow: 0px 2px 5px gray; */
+}
+
+#pwCheck{
+    border: 0px solid;
+    border-bottom: 1px solid;
+    width: 20%;
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    /* box-shadow: 0px 2px 2px gray; */
+}
+
+#name::placeholder {
+    font-size: medium;
+}
+
+#email::placeholder {
+    font-size: medium;
+}
+
+#certification::placeholder {
+    font-size: medium;
+}
+
+#password::placeholder {
+    font-size: medium;
+}
+
+#pwCheck::placeholder {
+    font-size: medium;
+}
+
+.send{
+    border: 0px solid;
+}
+
+.confirm{
+    border: 0px solid;
+}
+
+.signbtn{
+    border: 0px solid;
+    background-color: white;
+    margin-top: 1%;
+    font-size: medium;
+}
+
+.signbtn:hover{
+    cursor: pointer;
+}
+
+.send:hover{
+    cursor: pointer;
+}
+
+.confirm:hover{
+    cursor: pointer;
+}

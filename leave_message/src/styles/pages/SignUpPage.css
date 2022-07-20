@@ -1,0 +1,35 @@
+.head{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.titleBox{
+    border-left: 2px solid;
+    padding-left: 0.5%;
+}
+
+.title{
+    font-size: large;
+    font-weight: bold;
+    /* border: 2px solid pink; */
+    margin: 0px;
+}
+
+.underText{
+    font-size: small;
+    /* border: 2px solid yellow; */
+    margin: 0px;
+}
+
+.bottom{
+    margin-top: 3%;
+    text-align: center;
+}
+
+.loginBtn{
+    border: 0px solid;
+    background-color: white;
+    font-size: large;
+}

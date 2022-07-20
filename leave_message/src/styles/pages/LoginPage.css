@@ -1,0 +1,20 @@
+.Box{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 2px solid; */
+    text-align: center;
+}
+
+#banner{
+    width: 300px;
+}
+
+.signBtn{
+    border: 0px solid;
+    background-color: white;
+    font-size: large;
+}
+.signBtn:hover{
+    color: black;
+}
