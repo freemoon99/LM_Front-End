@@ -1,3 +1,5 @@
+import '../styles/components/Header.css';
+
 import { useState } from 'react';
 
 const Header = ({pageName}) => {
@@ -11,8 +13,15 @@ const Header = ({pageName}) => {
 
     return(
         <div className="Header">
-            {titleDate[pageName].textTitle}
-            {titleDate[pageName].textBtn}
+            
+            <div className="Header-textTitle-Box">
+                <div className="Header-textTitle-text">
+                    {titleDate[pageName].textTitle}
+                </div>
+                <div className="Header-textTitle-line"></div>
+            </div>
+            
+            <div className="Header-textBtn">{titleDate[pageName].textBtn}</div>
         </div>
     );
 }
