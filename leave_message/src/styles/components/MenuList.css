@@ -1,0 +1,26 @@
+.MenuList{
+    height: 100%;
+    padding: 0 40px;
+}
+
+.MenuList_Box{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.MenuBox{
+    margin-bottom: 30px;
+    border-left: 1.5px solid black;
+    padding: 5px 10px;
+}
+.MenuBox_Title{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(62, 62, 62);
+    margin-bottom: 3px;
+}
+.MenuBox_Text{
+    font-size: 18px;
+}

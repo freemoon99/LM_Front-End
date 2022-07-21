@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/pages/MainPage.css";
+import MenuList from "../components/MenuList";
 
 const MainPage = () => {
 
@@ -13,7 +14,7 @@ const MainPage = () => {
             </div>
             
             <div className="frame-mainPage-body">
-                <h2>메인 페이지</h2>
+                <MenuList/>
             </div>
 
             <div className="frame-mainPage-footer">
