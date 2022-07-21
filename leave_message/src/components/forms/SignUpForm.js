@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
 
 function SignUpForm() {
@@ -18,6 +18,45 @@ function SignUpForm() {
         });
     }
 
+    // function signUpHandler()
+    // {
+    //     if(authCode.length === 0 || )
+    //     {  
+
+    //         return;
+    //     }
+
+    //     if(authCode)
+    //     {  
+            
+    //         return;
+    //     }
+
+    //     if(authCode)
+    //     {  
+            
+    //         return;
+    //     }
+
+    //     if(authCode)
+    //     {  
+            
+    //         return;
+    //     }
+
+    //     if(authCode)
+    //     {  
+            
+    //         return;
+    //     }
+    // }
+
+    const authCodeRef = useRef();
+    const userPwCheckRef = useRef();
+    const userNameRef = useRef();
+    const userEmailRef = useRef();
+    const userPwRef = useRef();
+
     // 인증 코드 상태 저장
     const [ authCode, setAuthCode ] = useState('');
     // 비밀번호 확인 값 상태 저장
@@ -31,21 +70,24 @@ function SignUpForm() {
         userPw : "",
     });
 
-    console.log(userData);
-
     return (
         <div className='signBox'>
-            <input type='text' id='name' placeholder='이름' value={userData.userName} name="userName" onChange={handleChangeData}/>
+            
+            <input type='text' id='name' placeholder='이름' value={userData.userName} name="userName" ref={userNameRef} onChange={handleChangeData}/>
+            
             <div className='sendEmail'>
-                <input type='text' id='email' placeholder='이메일' value={userData.userEmail} name="userEmail" onChange={handleChangeData}/>
+                <input type='text' id='email' placeholder='이메일' value={userData.userEmail} name="userEmail" ref={userEmailRef} onChange={handleChangeData}/>
                 <button className='send'>전송</button>
             </div>
+            
             <div className='pwConfirm'>
-                <input type='text' id='certification' placeholder='인증코드' value={authCode} onChange={handleAuthCode}/>
+                <input type='text' id='certification' placeholder='인증코드' value={authCode} ref={authCodeRef} onChange={handleAuthCode}/>
                 <button className='confirm'>확인</button>
             </div>
-            <input type='password' id='password' placeholder='비밀번호' value={userData.userPw} name="userPw" onChange={handleChangeData}/>
-            <input type='text' id='pwCheck' placeholder='비밀번호 확인' value={userPwCheck} onChange={handlePwCheck}/>
+            
+            <input type='password' id='password' placeholder='비밀번호' value={userData.userPw} name="userPw" ref={userPwRef} onChange={handleChangeData}/>
+            
+            <input type='text' id='pwCheck' placeholder='비밀번호 확인' value={userPwCheck} ref={userPwCheckRef} onChange={handlePwCheck}/>
 
             <button className='signbtn'>회원가입</button>
         </div>

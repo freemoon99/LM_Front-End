@@ -52,6 +52,19 @@ function LoginForm() {
             setInputPw('');
             return;    
         }
+
+        axios({
+            method: 'post',
+            url: '127.0.0.1:8000/user/login/',
+            data: {
+                email: idInput,
+                password: pwInput,
+            },
+            headers: {
+                'ContentType':'applicaiont/json'
+            },
+        }).then((res)=>{console.log(res.data)}).catch();
+        goMain();
     }
         
     return (
