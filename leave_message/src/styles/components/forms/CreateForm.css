@@ -1,0 +1,119 @@
+.CreateForm{
+    height: 100%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.CreateForm_InputBox{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.CreateForm_PostBox{
+    height: 60px;
+}
+
+.CreateForm_ContentBox, .CreateForm_RecieversBox, .CreateForm_LifeCheckBox{
+    padding: 1px 10px;
+    margin: 10px 0;
+    border-left: 1.5px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.CreateForm_ContentBox{
+    flex-grow: 1;
+}
+
+.CreateForm_SubTitle{
+    font-weight: bold;
+    font-size: 17px;
+    height: 30px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.CreateForm_Content_Input{
+    flex-grow: 1;
+    border: none;
+    outline-color: rgb(206, 206, 206);
+    margin-bottom: 2px;
+    box-shadow: 1px 1px 1px 1px rgb(234, 234, 234)
+}
+
+.CreateForm_EmailInputBox{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2px;
+}
+
+.CreateForm_EamilInput{
+    flex-grow: 1;
+    border: none;
+    outline-color: rgb(206, 206, 206);
+    box-shadow: 1px 1px 1px 1px rgb(234, 234, 234);
+}
+.CreateFrom_EamilAdd{
+    font-weight: bold;
+    font-size: 16px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.CreateForm_SelectBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin : 5px 8px;
+    height: 30px;
+}
+.CreateForm_SelectBox_Title{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(64, 64, 64);
+}
+.CreateForm_SelectBox_Select{
+    width: 100px;
+    display: flex;
+    background-color: #444444;
+    color: white;
+    height: 100%;
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+.CreateForm_PostBox{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.CreateForm_PostBox_PostButton{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 10px;
+    border-left: 1.5px solid black;
+}
+
+.CreateForm_RecieversList{
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 2px;
+    height: 50px;
+}
+.CreateForm_RecieversList_Box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 3px;
+    padding: 10px;
+    background-color:  #444444;
+    color: white;
+    border-radius: 10px;
+}
+
+.CreateForm_RecieversList_X{
+    margin-left: 15px;
+    width: 15px;
+}
