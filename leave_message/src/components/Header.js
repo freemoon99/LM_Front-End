@@ -11,6 +11,12 @@ const Header = ({pageName}) => {
         setting : {textTitle : '설정', textBtn : '뒤로가기'},
     });
 
+    function move_page() {
+        titleDate[pageName].textBtn === '설정' 
+        ? window.location.href = '/settings'
+        : window.location.replace('/');
+    }
+
     return(
         <div className="Header">
             
@@ -21,7 +27,9 @@ const Header = ({pageName}) => {
                 <div className="Header-textTitle-line"></div>
             </div>
             
-            <div className="Header-textBtn">{titleDate[pageName].textBtn}</div>
+            <div onClick={move_page} className="Header-textBtn">
+                {titleDate[pageName].textBtn}
+            </div>
         </div>
     );
 }
