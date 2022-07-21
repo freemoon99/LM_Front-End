@@ -1,0 +1,42 @@
+.ResultModal_Header_Title{
+    border-bottom: 1px solid rgb(41, 41, 41);
+    width: 80%;
+    padding: 8px;
+}
+
+.ResultModal_Footer_True, .ResultModal_Footer_False{
+    font-size: 19px;
+    font-weight: bold;
+    color: rgb(83, 83, 83);
+    margin: 10px 10px;
+}
+
+.ResultModal_Footer_True{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ResultModal_Content{
+    text-align: center;
+    font-size: 17px;
+    padding: 30px 0;
+}
+
+.ResultModal_False_LinkBox{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.ResultModal_False_LinkTitle{
+    font-size: 18px;
+    border-bottom: 1px solid rgb(41, 41, 41);
+    width: 80%;
+    text-align: end;
+    padding: 5px;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+.ResultModal_False_Link{
+    padding: 10px;
+}
