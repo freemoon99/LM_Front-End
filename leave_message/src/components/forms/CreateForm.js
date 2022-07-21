@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import '../../styles/components/forms/CreateForm.css';
 
 
-const CreateForm = () => {
+const CreateForm = ({state}) => {
     const textInputRef = useRef();
     const emailInputRef = useRef();
 
@@ -13,6 +13,12 @@ const CreateForm = () => {
         cycle: 3,
         count: 2
     });
+
+    // useEffect(()=>{
+    //     if(state==='update'){
+    //         // 통신
+    //     }
+    // },[])
 
     function editText(e){
         setPost({...post, content: e.target.value});

@@ -10,7 +10,7 @@ const CreatePage = () => {
     return(
         <div className="CreatePage">
             <Header pageName={pageName}/>
-            <CreateForm className="CreatePage_CreateForm"></CreateForm>
+            <CreateForm state={pageName} className="CreatePage_CreateForm"></CreateForm>
         </div>
     );
 }
