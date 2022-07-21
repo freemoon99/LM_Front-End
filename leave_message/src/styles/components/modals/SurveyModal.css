@@ -1,0 +1,51 @@
+#contained-modal-title-vcenter{
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+}
+.SurveyModal_Header_Title{
+    border-bottom: 1px solid rgb(41, 41, 41);
+    width: 80%;
+    padding: 8px;
+}
+
+.SurvayModal_Footer{
+    width: 100%;
+    font-size: 19px;
+    font-weight: bold;
+    color: rgb(83, 83, 83);
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+}
+.SurveyModal_Body{
+    height: 350px;
+    overflow: scroll;
+    padding: 20px;
+}
+
+.SurveyList_Box{
+    margin-bottom: 20px;
+    border-top: 0.5px solid rgb(103, 103, 103);
+    padding: 5px 15px;
+}
+.SurveyList_Title{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(52, 52, 52);
+    margin: 15px 0;
+}
+.SurveyList_Content{
+    padding-left: 10px;
+}
+.SurveyList_Item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    padding-bottom: 15px;
+}
+.SurveyList_Item_Input{
+    margin: 0 10px;
+    accent-color: rgb(60, 60, 60);
+}
