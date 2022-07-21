@@ -15,7 +15,7 @@ const SettingsPage = () => {
                 <Out />
                 
                 <div className="settingsPage-flower-img-text">
-                    <img src="images/LM_flower_45.png"/>
+                    <img src="images/LM_flower_45.png" alt="이미지를 불러오지 못했습니다."/>
                     <p>금잔화의 꽃말은 <br/>이별의 슬픔이다.</p>
                 </div>
             </div>
