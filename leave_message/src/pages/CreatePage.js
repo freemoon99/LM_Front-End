@@ -1,6 +1,7 @@
 
 import CreateForm from "../components/forms/CreateForm";
 import Header from "../components/Header"
+import '../styles/pages/CreatePage.css'
 
 const CreatePage = () => {
 
@@ -9,7 +10,7 @@ const CreatePage = () => {
     return(
         <div className="CreatePage">
             <Header pageName={pageName}/>
-            <CreateForm></CreateForm>
+            <CreateForm state={pageName} className="CreatePage_CreateForm"></CreateForm>
         </div>
     );
 }
