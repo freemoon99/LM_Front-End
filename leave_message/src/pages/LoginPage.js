@@ -16,7 +16,10 @@ function LoginPage() {
             <p id='maintitle'>남김.</p>
             <p id='subtitle'>금잔화:이별의 슬픔</p>
             <LoginForm />
-            <div className='signBtn' onClick={signHandler}>회원가입</div>
+            
+            <div className="signBtn-Box">
+                <div className='signBtn-Box-signupbtn' onClick={signHandler}>회원가입</div>
+            </div>
         </div>
     );
 }

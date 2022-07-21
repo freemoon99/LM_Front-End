@@ -1,5 +1,5 @@
+/* 로그인 페이지 로그인 부분 박스 */
 .loginBox{
-    border: 1px solid blue;
     width:55%;
     height: 30%;
     display: flex;
@@ -8,14 +8,17 @@
     align-items: center;
 }
 
+/* 로그인 페이지 로그인 부분 박스 - 입력창 (이메일, 비밀번호) */
 .login-form-input {
     width:88%;
     height: 12%;
     border: none;
+    outline:none;
     border-bottom: 1px solid;
     margin-bottom: 5%;
 }
 
+/* 로그인 페이지 로그인 부분 박스 - 로그인 버튼 */
 .login-form-btn {
     margin-top: 5%;
     border: 0px solid;
@@ -23,9 +26,9 @@
     border-radius: 8px;
     font-size: larger;
     font-weight: bolder;
-
 }
 
+/* 로그인 페이지 로그인 부분 박스 - 로그인 버튼 (부가 기능) */
 .login-form-btn:disabled{
     background-color: white;
     color: black;
