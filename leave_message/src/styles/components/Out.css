@@ -1,0 +1,21 @@
+.Out {
+    width: 90%;
+    height: 30%;
+    margin: auto;
+}
+
+.Out-logout-btn {
+    border-left: 3px solid #424242;
+    font-size:4vh;
+    font-weight: bold;
+    margin: 22px;
+    padding-left: 15px;
+}
+
+.Out-withdrawal-btn {
+    border-left: 3px solid #424242;
+    font-size:4vh;
+    font-weight: bold;
+    margin: 22px;
+    padding-left: 15px;
+}
