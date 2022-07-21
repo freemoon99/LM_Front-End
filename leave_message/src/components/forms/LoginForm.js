@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import { React, useState, useRef } from 'react';
+import { Navigate } from 'react-router-dom';
 import '../../styles/components/forms/LoginForm.css'
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 
 function LoginForm() {
+
+    const idInput = useRef();
+    const pwInput = useRef();
+
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
     const [button, setButton] = useState(true);
@@ -27,33 +31,33 @@ function LoginForm() {
     }
 
     // login 버튼 클릭 이벤트
-    const onClickLogin = () => {
-        console.log('click login')
-        axios({
-            method:'post',
-            url:"url",
-            data:{
-                email: inputId,
-				password: inputPw,
-            },
-            headers:{
-                'ContentType':'application/json'
-            }
-        })
-        .then((res)=>{
-            if(res.data.token){
-                goMain();
-            }
-        })
-        .catch(()=>{
-            alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-        })
-    }
+    function onClickLogin()
+    {
+        // 이메일 형식이 @가 없거나, @개 2개 이상일 경우 
+        if(inputId.split('@').length - 1 > 1 || inputId.split('@').length - 1 === 0)
+        {
+            alert('이메일 형식이 잘못되었습니다!');
+            idInput.current.focus();
+            setInputId('');
+            setInputPw('');
+            return;
+        }
 
+        // 비밀번호가 없거나, 12자리 초과할 경우
+        if(inputPw.length === 0 || inputPw.length > 12)
+        {
+            alert('비밀번호가 입력되지않았습니다!');
+            pwInput.current.focus();
+            setInputId('');
+            setInputPw('');
+            return;    
+        }
+    }
+        
     return (
         <div className='loginBox'>
-            <input type='text' className="login-form-input" placeholder='이메일' value={inputId} onChange={handleInputId} onKeyUp={changeButton}/>
-            <input type='password' className="login-form-input" placeholder='비밀번호' value={inputPw} onChange={handleInputPw} onKeyUp={changeButton}/>
+            <input type='text' className="login-form-input" placeholder='이메일' ref={idInput} value={inputId} onChange={handleInputId} onKeyUp={changeButton}/>
+            <input type='password' className="login-form-input" placeholder='비밀번호 ( 5자리 이상 )' ref={pwInput} value={inputPw} onChange={handleInputPw} onKeyUp={changeButton}/>
             <button type='button' className="login-form-btn" disabled={button} onClick={onClickLogin}>로그인</button>
         </div>
     );
