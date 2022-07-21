@@ -1,16 +1,22 @@
 import React from 'react';
 import '../styles/pages/LoginPage.css'
 import LoginForm from './../components/forms/LoginForm';
-import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+
+    const navigate = useNavigate();
+    const signHandler = () => {
+        navigate('/signup');
+    }
+    
     return (
         <div className='Box'>
-            <img id='banner' src='/images/logo.png' alt='사진이 없습니다'/>
+            <img id='banner' src='/images/LM_flower_45.png' alt='사진이 없습니다'/>
+            <p id='maintitle'>남김.</p>
+            <p id='subtitle'>금잔화:이별의 슬픔</p>
             <LoginForm />
-            <br />
-            <button type='button' className='signBtn'><Link to='/signup'>회원가입</Link></button>
+            <div className='signBtn' onClick={signHandler}>회원가입</div>
         </div>
     );
 }

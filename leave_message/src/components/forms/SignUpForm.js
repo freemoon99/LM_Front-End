@@ -1,42 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
-import axios from 'axios';
 
 function SignUpForm() {
-    const [inputId, setInputId] = useState('')
-    const [inputPw, setInputPw] = useState('')
+    // const [btn, setBtn] = useState(true);
 
-    // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
-    const handleInputId = (e) => {
-        setInputId(e.target.value)
+    // function changeBtn(){
+    //     inputId.includes('@') && inputPw.length >= 5 ? setBtn(false) :setBtn(true);
+    // }
+
+    function handleAuthCode(e) { setAuthCode(e.target.value)};
+    function handlePwCheck(e) { setUserPwCheck(e.target.value)};
+
+    const handleChangeData = (e) => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value,
+        });
     }
 
-    const handleInputPw = (e) => {
-        setInputPw(e.target.value)
-    }
+    // 인증 코드 상태 저장
+    const [ authCode, setAuthCode ] = useState('');
+    // 비밀번호 확인 값 상태 저장
+    const [ userPwCheck, setUserPwCheck ] = useState('');
+    // 이메일 인증 여부 상태 저장
+    // const [ authEmail, setAuthEmail ] = useState(false);
+    // 서버에 보낼 데이터 상태 저장
+    const [ userData, setUserData ] = useState({
+        userName : "",
+        userEmail : "",
+        userPw : "",
+    });
 
-    // 페이지 렌더링 후 가장 처음 호출되는 함수
-    useEffect(() => {
-        axios.get('주소')
-        .then(res => console.log(res))
-        .catch()
-    },
-    // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
-    [])
+    console.log(userData);
 
     return (
         <div className='signBox'>
-            <input type='text' id='name' placeholder='이름' />
+            <input type='text' id='name' placeholder='이름' value={userData.userName} name="userName" onChange={handleChangeData}/>
             <div className='sendEmail'>
-                <input type='text' id='email' placeholder='이메일' value={inputId} onChange={handleInputId} />
+                <input type='text' id='email' placeholder='이메일' value={userData.userEmail} name="userEmail" onChange={handleChangeData}/>
                 <button className='send'>전송</button>
             </div>
             <div className='pwConfirm'>
-                <input type='text' id='certification' placeholder='인증코드' />
+                <input type='text' id='certification' placeholder='인증코드' value={authCode} onChange={handleAuthCode}/>
                 <button className='confirm'>확인</button>
             </div>
-            <input type='password' id='password' placeholder='비밀번호' value={inputPw} onChange={handleInputPw} />
-            <input type='text' id='pwCheck' placeholder='비밀번호 확인' />
+            <input type='password' id='password' placeholder='비밀번호' value={userData.userPw} name="userPw" onChange={handleChangeData}/>
+            <input type='text' id='pwCheck' placeholder='비밀번호 확인' value={userPwCheck} onChange={handlePwCheck}/>
+
             <button className='signbtn'>회원가입</button>
         </div>
     );

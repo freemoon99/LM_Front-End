@@ -1,48 +1,34 @@
 .loginBox{
-    /* border: 2px solid; */
-    width: 100%;
+    border: 1px solid blue;
+    width:55%;
+    height: 30%;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
-#inputId{
-    border: 0px solid;
+.login-form-input {
+    width:88%;
+    height: 12%;
+    border: none;
     border-bottom: 1px solid;
-    width: 20%;
-    font-size: larger;
-    margin-left: auto;
-    margin-right: auto;
-    /* box-shadow: 0px 2px 2px gray; */
+    margin-bottom: 5%;
 }
 
-#inputPw{
-    border: 0px solid;
-    border-bottom: 1px solid;
-    width: 20%;
-    font-size: larger;
-    margin-left: auto;
-    margin-right: auto;
-    /* box-shadow: 0px 2px 5px gray; */
-}
-
-#inputId::placeholder {
-    text-align: center;
-    font-size: medium;
-}
-
-#inputPw::placeholder {
-    text-align: center;
-    font-size: medium;
-}
-
-.btn{
+.login-form-btn {
+    margin-top: 5%;
     border: 0px solid;
     background-color: white;
-    margin-top: 1%;
-    font-size: medium;
+    border-radius: 8px;
+    font-size: larger;
+    font-weight: bolder;
+
 }
 
-.btn:hover{
-    cursor: pointer;
+.login-form-btn:disabled{
+    background-color: white;
+    color: black;
+    font-size: larger;
+    font-weight: lighter;
 }
