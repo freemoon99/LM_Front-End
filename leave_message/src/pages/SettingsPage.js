@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Out from "../components/Out";
 import "../styles/pages/SettingsPage.css";
 
 const SettingsPage = () => {
@@ -11,7 +12,12 @@ const SettingsPage = () => {
             <Header pageName={pageName} className="frame-settingsPage-header"/>
             
             <div className="frame-settingsPage-body">
-                <h2>설정 페이지</h2>
+                <Out />
+                
+                <div className="settingsPage-flower-img-text">
+                    <img src="images/LM_flower_45.png"/>
+                    <p>금잔화의 꽃말은 <br/>이별의 슬픔이다.</p>
+                </div>
             </div>
 
             <Footer className="frame-settingsPage-footer"/>
