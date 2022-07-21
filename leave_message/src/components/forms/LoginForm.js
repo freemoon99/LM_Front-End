@@ -1,41 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../styles/components/forms/LoginForm.css'
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 function LoginForm() {
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
+    const [button, setButton] = useState(true);
+
+    const goMain = () => {
+        Navigate('/');
+    }
 
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
-        setInputId(e.target.value)
+        setInputId(e.target.value);
     }
 
     const handleInputPw = (e) => {
-        setInputPw(e.target.value)
+        setInputPw(e.target.value);
+    }
+    
+    // 비밀번호 5자리 이상일 때, 아이디에 @ 포함되어 있을 때
+    function changeButton(){
+        inputId.includes('@') && inputPw.length >= 5 ? setButton(false) :setButton(true);
     }
 
     // login 버튼 클릭 이벤트
     const onClickLogin = () => {
         console.log('click login')
+        axios({
+            method:'post',
+            url:"url",
+            data:{
+                email: inputId,
+				password: inputPw,
+            },
+            headers:{
+                'ContentType':'application/json'
+            }
+        })
+        .then((res)=>{
+            if(res.data.token){
+                goMain();
+            }
+        })
+        .catch(()=>{
+            alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+        })
     }
 
-    // 페이지 렌더링 후 가장 처음 호출되는 함수
-    useEffect(() => {
-        axios.get('주소')
-        .then(res => console.log(res))
-        .catch()
-    },
-    // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
-    [])
-
     return (
-        <div>
-            <div className='loginBox'>
-                <input type='text' id='inputId' placeholder='이메일' value={inputId} onChange={handleInputId} />
-                <input type='password' id='inputPw' placeholder='비밀번호' value={inputPw} onChange={handleInputPw} />
-                <button type='button' className='btn' onClick={onClickLogin}>로그인</button>
-            </div>
+        <div className='loginBox'>
+            <input type='text' className="login-form-input" placeholder='이메일' value={inputId} onChange={handleInputId} onKeyUp={changeButton}/>
+            <input type='password' className="login-form-input" placeholder='비밀번호' value={inputPw} onChange={handleInputPw} onKeyUp={changeButton}/>
+            <button type='button' className="login-form-btn" disabled={button} onClick={onClickLogin}>로그인</button>
         </div>
     );
 }

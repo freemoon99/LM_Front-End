@@ -1,20 +1,42 @@
 .Box{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 2px solid; */
-    text-align: center;
+    border: 1px solid green;
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #banner{
-    width: 300px;
+    border: 1px solid red;
+    width:55%;
+    height: 30%;
+    opacity: 0.6;
+}
+
+#maintitle{
+    position: absolute;
+    top: 9.7%;
+    font-size: 9.5vh;
+}
+
+#subtitle{
+    position: absolute;
+    top: 32%;
+    left: 42%;
+    font-size: 2.2vh;
+    font-weight: bold;
 }
 
 .signBtn{
-    border: 0px solid;
-    background-color: white;
-    font-size: large;
-}
-.signBtn:hover{
-    color: black;
+    border: 1px solid pink;
+    cursor: pointer;
+    width:55%;
+    height: 15%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }
