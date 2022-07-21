@@ -7,4 +7,28 @@
 
 .frame-settingsPage-body {
     flex-grow: 1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settingsPage-flower-img-text {
+    width: 90%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsPage-flower-img-text > img {
+    width: 70%;
+    height: 70%;
+}
+
+.settingsPage-flower-img-text > p {
+    font-weight: bold;
+    font-size: 2.5vh;
+    position: absolute;
+    bottom: 17%;
+    right: 20%;
 }
