@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/components/MenuList.css";
+import SurveyModal from "./modals/SurveyModal";
 
 const MenuList = () => {
     const [menuList] = useState([
@@ -7,7 +8,8 @@ const MenuList = () => {
         ['수정하기.', '이야기를 수정해 보세요.'],
         ['삭제하기.', '이야기를 지우시겠어요?'],
         ['코드 입력하기.', '이메일 회신 코드를 입력해주세요.']
-    ])
+    ]);
+    const [showModal, setShowModal] = useState(false);
 
     function clickMenu(index){
         switch(index){
@@ -23,16 +25,18 @@ const MenuList = () => {
             case 3:
                 checkLife();
                 break
+            default:
+                console.log('error');
         }
     }
 
     function createPost(){
         // 토큰이 있으면
-        window.location.href = '/create';
+        checkDepression();
     }
     function updatePost(){
         // 작성된 유서가 있으면
-        window.location.href = '/update';
+        checkDepression();
     }
     function deletePost(){
         // 작성된 유서가 있으면
@@ -43,6 +47,10 @@ const MenuList = () => {
     function checkLife(){
         // 인증코드를 발송했으면
         const life_code = window.prompt('이메일에 수신된 코드를 입력해주세요.');
+    }
+
+    function checkDepression(){
+        setShowModal(true);
     }
 
     function showMenu(){
@@ -67,6 +75,11 @@ const MenuList = () => {
             <div className="MenuList_Box">
                 {showMenu()}
             </div>
+
+            <SurveyModal
+                show = {showModal}
+                onHide = {()=> setShowModal(false)}
+            />
         </div>
     );
 }
