@@ -16,14 +16,14 @@
 .Footer-info-version{
     width: 50%;
     color:#616161;
-    font-size:18px;
+    font-size:2.2vh;
     padding: 5px 0 0 25px;
 }
 
 .Footer-info-teamName{
     width: 50%;
     color:#616161;
-    font-size:18px;
+    font-size:2.5vh;
     display:flex;
     justify-content: center;
     align-items: center;
