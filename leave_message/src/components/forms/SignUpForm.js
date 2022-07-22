@@ -10,6 +10,21 @@ function SignUpForm() {
 
     function handleAuthCode(e) { setAuthCode(e.target.value)};
     function handlePwCheck(e) { setUserPwCheck(e.target.value)};
+    //이메일 유효성 검사
+    function emailCheck()
+    {
+        const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+        if( regExp.test(userData.userEmail) === false )
+        {
+            alert('이메일 오류');
+            setUserData({
+                ...userData,
+                ['userEmail']: '',
+            });
+            userEmailRef.current.focus();
+            return;
+        }
+    }
 
     const handleChangeData = (e) => {
         setUserData({
@@ -18,38 +33,47 @@ function SignUpForm() {
         });
     }
 
-    // function signUpHandler()
-    // {
-    //     if(authCode.length === 0 || )
-    //     {  
+    function signUpHandler()
+    {
+        if(userData.userName.length < 2)
+        {  
+            alert('이름을 입력해주세요');
+            setUserData({
+                ...userData,
+                ['userName']: '',
+            });
+            console.log(userData);
+            userNameRef.current.focus();
+            return;
+        }
 
-    //         return;
-    //     }
+        if(authCode.length !==8 || authEmail === false)
+        {
+            alert('인증코드 혹은 인증을 확인해주세요')
+            setAuthCode('');
+            authCodeRef.current.focus();
+            return;
+        }
 
-    //     if(authCode)
-    //     {  
-            
-    //         return;
-    //     }
+        if(userData.userPw.length <5)
+        {  
+            alert('비밀번호는 5자리 이상입니다')
+            setUserData({
+                ...userData,
+                ['userPw']: '',
+            });
+            userPwRef.current.focus();
+            return;
+        }
 
-    //     if(authCode)
-    //     {  
-            
-    //         return;
-    //     }
-
-    //     if(authCode)
-    //     {  
-            
-    //         return;
-    //     }
-
-    //     if(authCode)
-    //     {  
-            
-    //         return;
-    //     }
-    // }
+        if(userData.userPw !== userPwCheck)
+        {  
+            alert('비밀번호가 다릅니다')
+            setUserPwCheck('');
+            userPwCheckRef.current.focus();
+            return;
+        }
+    }
 
     const authCodeRef = useRef();
     const userPwCheckRef = useRef();
@@ -57,12 +81,14 @@ function SignUpForm() {
     const userEmailRef = useRef();
     const userPwRef = useRef();
 
+    // 이메일 구조 정의
+    const structure = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     // 인증 코드 상태 저장
     const [ authCode, setAuthCode ] = useState('');
     // 비밀번호 확인 값 상태 저장
     const [ userPwCheck, setUserPwCheck ] = useState('');
-    // 이메일 인증 여부 상태 저장
-    // const [ authEmail, setAuthEmail ] = useState(false);
+    // 이메일 인증 여부 상태 저장   
+    const [ authEmail, setAuthEmail ] = useState(false);
     // 서버에 보낼 데이터 상태 저장
     const [ userData, setUserData ] = useState({
         userName : "",
@@ -77,7 +103,7 @@ function SignUpForm() {
             
             <div className='sendEmail'>
                 <input type='text' id='email' placeholder='이메일' value={userData.userEmail} name="userEmail" ref={userEmailRef} onChange={handleChangeData}/>
-                <button className='send'>전송</button>
+                <button className='send' onClick={emailCheck}>전송</button>
             </div>
             
             <div className='pwConfirm'>
@@ -87,9 +113,9 @@ function SignUpForm() {
             
             <input type='password' id='password' placeholder='비밀번호' value={userData.userPw} name="userPw" ref={userPwRef} onChange={handleChangeData}/>
             
-            <input type='text' id='pwCheck' placeholder='비밀번호 확인' value={userPwCheck} ref={userPwCheckRef} onChange={handlePwCheck}/>
+            <input type='password' id='pwCheck' placeholder='비밀번호 확인' value={userPwCheck} ref={userPwCheckRef} onChange={handlePwCheck}/>
 
-            <button className='signbtn'>회원가입</button>
+            <button className='signbtn' onClick={signUpHandler}>회원가입</button>
         </div>
     );
 }
