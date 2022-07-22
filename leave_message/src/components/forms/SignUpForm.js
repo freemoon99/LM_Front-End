@@ -36,7 +36,7 @@ function SignUpForm() {
                 const tmpCode = res.data.code;
                 setCheckCode(tmpCode);
             })
-            .catch((err)=>{console.log(err)})
+            .catch((err)=>{console.log(err);})
         }
     }
 
