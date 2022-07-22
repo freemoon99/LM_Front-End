@@ -10,14 +10,15 @@ const MenuList = () => {
         ['코드 입력하기.', '이메일 회신 코드를 입력해주세요.']
     ]);
     const [showModal, setShowModal] = useState(false);
+    const [moveState, setMoveState] = useState(-1);
 
     function clickMenu(index){
         switch(index){
             case 0:
-                createPost();
+                createPost(index);
                 break
             case 1:
-                updatePost();
+                updatePost(index);
                 break
             case 2:
                 deletePost();
@@ -30,12 +31,14 @@ const MenuList = () => {
         }
     }
 
-    function createPost(){
+    function createPost(index){
         // 토큰이 있으면
+        setMoveState(index);
         checkDepression();
     }
-    function updatePost(){
+    function updatePost(index){
         // 작성된 유서가 있으면
+        setMoveState(index);
         checkDepression();
     }
     function deletePost(){
@@ -49,7 +52,7 @@ const MenuList = () => {
         const life_code = window.prompt('이메일에 수신된 코드를 입력해주세요.');
     }
 
-    function checkDepression(){
+    function checkDepression(index){
         setShowModal(true);
     }
 
@@ -79,6 +82,7 @@ const MenuList = () => {
             <SurveyModal
                 show = {showModal}
                 onHide = {()=> setShowModal(false)}
+                state = {moveState}
             />
         </div>
     );
