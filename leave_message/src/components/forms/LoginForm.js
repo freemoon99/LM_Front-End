@@ -2,6 +2,7 @@ import { React, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/components/forms/LoginForm.css'
 import axios from 'axios';
+import proxy from '../../security/Security.json'
 
 function LoginForm() {
 
@@ -67,7 +68,7 @@ function LoginForm() {
         // }).then((res)=>{console.log(res.data)})
         // .catch((err)=>{console.log(err)});
 
-        axios.post('http://13.124.86.178:8000/user/login/', {
+        axios.post(`${proxy['proxy']}/user/login/`, {
             email: inputId,
             password: inputPw,
         })
