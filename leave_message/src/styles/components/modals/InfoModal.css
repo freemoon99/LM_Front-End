@@ -1,0 +1,12 @@
+.InfoModal_Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.InfoModal_Body{
+    padding: 30px 40px;
+    font-size: 18px;
+}
