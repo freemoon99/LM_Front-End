@@ -19,7 +19,7 @@ const MenuList = () => {
     function clickMenu(index){
         switch(index){
             case 0:
-                createPost(index);
+                createPost(index)
                 break
             case 1:
                 updatePost(index);
@@ -34,6 +34,65 @@ const MenuList = () => {
                 console.log('error');
         }
     }
+    function checkCreate(){
+        // 토큰이 존재한다면 ?
+        if(localStorage.getItem('token')){
+            axios.post(`${proxy['proxy']}/post/new/`,
+            { token: localStorage.getItem('token') },
+            { 
+                headers: {
+                    'Authorization':`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{
+                if(res.status === 200)
+                {
+                    checkDepression();
+                }})
+            .catch((err)=>{
+                if(err.staus !== 200)
+                {
+                    alert('이미 작성되었거나 오류입니다');
+                }
+            })
+        } 
+        // 토근이 존재하지않는다면 ?
+        else{
+            alert('로그인 화면으로 이동합니다.');
+            navigate('/login');
+            return;
+        }
+    }
+
+    function checkUpdate(){
+        // 토큰이 존재한다면 ?
+        if(localStorage.getItem('token')){
+            axios.post(`${proxy['proxy']}/post/new/`,
+            { token: localStorage.getItem('token') },
+            { 
+                headers: {
+                    'Authorization':`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{
+                if(res.status === 200)
+                {
+                    alert('작성된 유서가 없습니다.');
+                }})
+            .catch((err)=>{
+                if(err.staus !== 200)
+                {
+                    checkDepression();
+                }
+            })
+        }
+    // 토근이 존재하지않는다면 ?
+    else{
+        alert('로그인 화면으로 이동합니다.');
+        navigate('/login');
+        return;
+    }
+}
 
     function checkToken(){
         // 토큰이 존재한다면 ?
@@ -64,12 +123,12 @@ const MenuList = () => {
         // 토큰이 있으면
         checkToken();
         setMoveState(index);
-        checkDepression();
+        checkCreate();
     }
     function updatePost(index){
         // 작성된 유서가 있으면
         setMoveState(index);
-        checkDepression();
+        checkUpdate();
     }
     function deletePost(){
         // 작성된 유서가 있으면
