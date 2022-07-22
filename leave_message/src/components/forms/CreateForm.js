@@ -1,6 +1,8 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import '../../styles/components/forms/CreateForm.css';
 import InfoModal from '../modals/InfoModal';
+import axios from 'axios';
+import proxy from '../../security/Security.json'
 
 
 const CreateForm = ({state}) => {
@@ -17,11 +19,24 @@ const CreateForm = ({state}) => {
         count: 2
     });
 
-    // useEffect(()=>{
-    //     if(state==='update'){
-    //         // 통신
-    //     }
-    // },[])
+    useEffect(()=>{
+        if(state==='update'){
+            axios.post(`${proxy['proxy']}/post/get/`, {
+                token: localStorage.getItem("token"),
+            },
+            {
+                headers: {
+                    Authorization: `Token ${localStorage.getItem("token")}`
+                }
+            })
+            .then(function(response){
+                console.log(response.data);
+            })
+            .catch(function(err){
+                console.log(err);
+            })
+        }
+    },[])
 
     function editText(e){
         setPost({...post, content: e.target.value});
@@ -95,7 +110,51 @@ const CreateForm = ({state}) => {
         sendPost();
     }
     function sendPost(){
-        // 통신
+        if(state==='update'){
+            if(window.confirm('이야기를 수정하시겠어요?')){
+                axios.post(`${proxy['proxy']}/post/update/`, {
+                    token: localStorage.getItem("token"),
+                    content: post['content'],
+                    reciever: post['recievers'],
+                    cycle: post['cycle'],
+                    count: post['count']
+                },
+                {
+                    headers: {
+                        Authorization: `Token ${localStorage.getItem("token")}`
+                    }
+                })
+                .then(function(response){
+                    window.location.replace('/');
+                })
+                .catch(function(err){
+                    console.log(err);
+                })
+            }
+        }
+        else{
+            if(window.confirm('이야기를 남기시겠어요?')){
+                axios.post(`${proxy['proxy']}/post/create/`, {
+                    token: localStorage.getItem("token"),
+                    content: post['content'],
+                    reciever: post['recievers'],
+                    cycle: post['cycle'],
+                    count: post['count']
+                },
+                {
+                    headers: {
+                        Authorization: `Token ${localStorage.getItem("token")}`
+                    }
+                })
+                .then(function(response){
+                    window.location.replace('/');
+                })
+                .catch(function(err){
+                    console.log(err);
+                })
+            }
+        }
+        
         return;
     }
 
