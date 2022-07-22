@@ -1,11 +1,14 @@
 import {useRef, useState} from 'react';
 import '../../styles/components/forms/CreateForm.css';
+import InfoModal from '../modals/InfoModal';
 
 
 const CreateForm = ({state}) => {
     const textInputRef = useRef();
     const emailInputRef = useRef();
 
+    const [showInfo, setShowInfo] = useState(false);
+    const [infoModalState, setInfoModalState] = useState(-1);
     const [recievEmail, setRecievEmail] = useState('');
     const [post, setPost] = useState({
         content: '',
@@ -102,6 +105,11 @@ const CreateForm = ({state}) => {
                 <div className='CreateForm_ContentBox'> 
                     <div className='CreateForm_SubTitle'>
                         내용
+                        <img className='info_icon' 
+                                src='images/info_icon.png' 
+                                alt='정보'
+                                onClick={()=>{setShowInfo(true);
+                                            setInfoModalState(0);}}/>
                     </div>
                     <textarea ref={textInputRef}
                             value={post.content} 
@@ -111,6 +119,11 @@ const CreateForm = ({state}) => {
                 <div className='CreateForm_RecieversBox'>
                     <div className='CreateForm_SubTitle'>
                         수신 이메일
+                        <img className='info_icon' 
+                                src='images/info_icon.png' 
+                                alt='정보'
+                                onClick={()=>{setShowInfo(true);
+                                            setInfoModalState(1);}}/>
                     </div>
                     <div className='CreateForm_EmailInputBox'>
                         <input  ref={emailInputRef}
@@ -135,6 +148,11 @@ const CreateForm = ({state}) => {
                     <div className='CreateForm_SelectBox'>
                         <div className='CreateForm_SelectBox_Title'>
                             전송 주기
+                            <img className='info_icon' 
+                                src='images/info_icon.png' 
+                                alt='정보'
+                                onClick={()=>{setShowInfo(true);
+                                            setInfoModalState(2);}}/>
                         </div>
                         <select defaultValue={post.cycle} 
                                 className='CreateForm_SelectBox_Select'
@@ -156,6 +174,11 @@ const CreateForm = ({state}) => {
                     <div className='CreateForm_SelectBox'>
                         <div className='CreateForm_SelectBox_Title'>
                             코드 전송 횟수
+                            <img className='info_icon' 
+                                src='images/info_icon.png' 
+                                alt='정보'
+                                onClick={()=>{setShowInfo(true);
+                                            setInfoModalState(3);}}/>
                         </div>
                         <select defaultValue={post.count} 
                                 className='CreateForm_SelectBox_Select'
@@ -179,6 +202,12 @@ const CreateForm = ({state}) => {
                     남기기.
                 </div>
             </div>
+
+            <InfoModal
+                show = {showInfo}
+                onHide = {()=>{setShowInfo(false);}} 
+                state = {infoModalState}
+            />
         </div>
     );
 }
