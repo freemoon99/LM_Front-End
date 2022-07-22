@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/components/MenuList.css";
 import SurveyModal from "./modals/SurveyModal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import proxy from "../security/Security.json"
 
 const MenuList = () => {
 
@@ -46,7 +48,21 @@ const MenuList = () => {
     function deletePost(){
         // 작성된 유서가 있으면
         if (window.confirm("당신의 이야기가 사라집니다.\n정말 삭제하시겠습니까?")){
-            //삭제
+            axios.post(`${proxy['proxy']}/post/delete/`, {
+                token: localStorage.getItem("token"),
+            },
+            {
+                headers: {
+                    Authorization: `Token ${localStorage.getItem("token")}`
+                }
+            })
+            .then(function(response){
+                console.log(response);
+                alert('이야기가 삭제되었습니다.')
+            })
+            .catch(function(err){
+                console.log(err);
+            })
         }
     }
     function checkLife(){
