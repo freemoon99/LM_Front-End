@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "../styles/components/MenuList.css";
 import SurveyModal from "./modals/SurveyModal";
+import { useNavigate, useNavigate } from "react-router-dom";
 
 const MenuList = () => {
+
     const [menuList] = useState([
         ['작성하기.', '못다한 이야기를 남겨보세요.'],
         ['수정하기.', '이야기를 수정해 보세요.'],
@@ -72,6 +74,8 @@ const MenuList = () => {
         }
         return list;
     }
+
+    const navigate = useNavigate();
 
     return(
         <div className="MenuList">
