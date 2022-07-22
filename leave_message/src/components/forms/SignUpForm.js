@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
+import axios from 'axios';
 
 function SignUpForm() {
     // const [btn, setBtn] = useState(true);
@@ -73,6 +74,16 @@ function SignUpForm() {
             userPwCheckRef.current.focus();
             return;
         }
+
+        axios.post('http://127.0.0.1:8000/auth/test/', {
+            data : userData
+        })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     }
 
     const authCodeRef = useRef();

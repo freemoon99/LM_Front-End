@@ -35,38 +35,26 @@ function LoginForm() {
     // login 버튼 클릭 이벤트
     function onClickLogin()
     {
-        // 이메일 형식이 @가 없거나, @개 2개 이상일 경우 
-        if(inputId.split('@').length - 1 > 1 || inputId.split('@').length - 1 === 0)
-        {
-            alert('이메일 형식이 잘못되었습니다!');
-            idInput.current.focus();
-            setInputId('');
-            setInputPw('');
-            return;
-        }
+        console.log("로그인!");
+    //     // 이메일 형식이 @가 없거나, @개 2개 이상일 경우 
+    //     if(inputId.split('@').length - 1 > 1 || inputId.split('@').length - 1 === 0)
+    //     {
+    //         alert('이메일 형식이 잘못되었습니다!');
+    //         idInput.current.focus();
+    //         setInputId('');
+    //         setInputPw('');
+    //         return;
+    //     }
 
-        // 비밀번호가 없거나, 12자리 초과할 경우
-        if(inputPw.length === 0 || inputPw.length > 12)
-        {
-            alert('비밀번호가 입력되지않았습니다!');
-            pwInput.current.focus();
-            setInputId('');
-            setInputPw('');
-            return;    
-        }
-
-        // axios({
-        //     method: 'post',
-        //     url: 'http://13.124.86.178:8000/user/login/',
-        //     data: {
-        //         email: idInput,
-        //         password: pwInput,
-        //     },
-        //     headers: {
-        //         'ContentType':'applicaiont/json'
-        //     },
-        // }).then((res)=>{console.log(res.data)})
-        // .catch((err)=>{console.log(err)});
+    //     // 비밀번호가 없거나, 12자리 초과할 경우
+    //     if(inputPw.length === 0 || inputPw.length > 12)
+    //     {
+    //         alert('비밀번호가 입력되지않았습니다!');
+    //         pwInput.current.focus();
+    //         setInputId('');
+    //         setInputPw('');
+    //         return;    
+    //     }
 
         axios.post(`${proxy['proxy']}/user/login/`, {
             email: inputId,
