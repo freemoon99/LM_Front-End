@@ -94,8 +94,34 @@ const MenuList = () => {
     }
 }
 
+    function checkToken(){
+        // 토큰이 존재한다면 ?
+        if(localStorage.getItem('token')){
+            axios.post(`${proxy['proxy']}/post/new/`, 
+            { token : localStorage.getItem('token') },
+            { 
+                headers : { 
+                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{console.log(res)})
+            .catch(function(error){
+                
+                console.log(error);
+            });
+            
+        } 
+        // 토근이 존재하지않는다면 ?
+        else{
+            alert('로그인 화면으로 이동합니다.');
+            navigate('/login');
+            return;
+        }
+    }
+
     function createPost(index){
         // 토큰이 있으면
+        checkToken();
         setMoveState(index);
         checkCreate();
     }
@@ -110,9 +136,38 @@ const MenuList = () => {
             //삭제
         }
     }
+
+    function InputHandler()
+    {
+        const lifecode = window.prompt('이메일에 수신된 코드를 입력해주세요.');
+        if(lifecode)
+        {
+            axios.post(`${proxy['proxy']}/lifecode/`, 
+            { 
+                token : localStorage.getItem('token'),
+                lifecode : lifecode,
+            },
+            { 
+                headers : { 
+                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{ if(res.status === 200) { alert('인증되었습니다.'); }})
+            .catch(()=>{alert('코드가 일치하지않습니다.')})
+        }
+    }
+
     function checkLife(){
         // 인증코드를 발송했으면
-        const life_code = window.prompt('이메일에 수신된 코드를 입력해주세요.');
+        axios.post(`${proxy['proxy']}/lifecodecheck/`, 
+            { token : localStorage.getItem('token') },
+            { 
+                headers : { 
+                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{ if(res.status === 200) { InputHandler }})
+            .catch(()=>{alert('발송된 코드가 없습니다.')})
     }
 
     function checkDepression(index){

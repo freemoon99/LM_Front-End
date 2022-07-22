@@ -30,7 +30,17 @@ const CreateForm = ({state}) => {
                 }
             })
             .then(function(response){
-                console.log(response.data);
+                let reciever = response.data['reciever'];
+                reciever = reciever.replace(/\[/g, "");
+                reciever = reciever.replace(/\]/g, "");
+                reciever = reciever.replace(/\'/g, "");
+                reciever = reciever.split(',');
+                setPost({
+                    content: response.data['content'],
+                    recievers: reciever,
+                    cycle: response.data['cycle'],
+                    count: response.data['count']
+                })
             })
             .catch(function(err){
                 console.log(err);
