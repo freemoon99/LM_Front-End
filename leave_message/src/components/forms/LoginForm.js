@@ -53,18 +53,34 @@ function LoginForm() {
             return;    
         }
 
-        axios({
-            method: 'post',
-            url: '127.0.0.1:8000/user/login/',
-            data: {
-                email: idInput,
-                password: pwInput,
-            },
-            headers: {
-                'ContentType':'applicaiont/json'
-            },
-        }).then((res)=>{console.log(res.data)}).catch();
-        goMain();
+        // axios({
+        //     method: 'post',
+        //     url: 'http://13.124.86.178:8000/user/login/',
+        //     data: {
+        //         email: idInput,
+        //         password: pwInput,
+        //     },
+        //     headers: {
+        //         'ContentType':'applicaiont/json'
+        //     },
+        // }).then((res)=>{console.log(res.data)})
+        // .catch((err)=>{console.log(err)});
+
+        axios.post('http://13.124.86.178:8000/user/login/', {
+            email: inputId,
+            password: inputPw,
+        })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        // .catch(function(error){
+        // console.log(error);
+        // });
+
+        // goMain();
     }
         
     return (
