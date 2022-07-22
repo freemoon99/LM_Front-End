@@ -55,13 +55,11 @@ function LoginForm() {
             email: inputId,
             password: inputPw,
         })
-        .then(function(response){
-            localStorage.setItem('token',response.data.token);
-            localStorage.setItem('name',response.data.name);
-            if(localStorage.getItem('token')){navigate('/');}
-        })
-        .catch(function(err){
-            console.log(err);
+        .then((res)=>{
+            console.log(res.data);
+            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('name',res.data.name);
+            if(localStorage.getItem('token')) {navigate('/');}
         })
     }
         
