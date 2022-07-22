@@ -11,10 +11,16 @@
 .head{
     width: 65%;
     height: 9%;
+    align-items: center;
+    margin-bottom: 3%
+}
+
+#bbox{
     border-left: 1.5px solid black;
     display:flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 15%;
 }
 
 /* 회원가입 페이지 슬로건 박스 - 타이틀 */
@@ -22,14 +28,21 @@
     font-size: 4vh;
     font-weight: bold;
     color: rgb(62, 62, 62);
-    margin-left: 5%;
+    margin-left: 1%;
 }
 
 /* 회원가입 페이지 슬로건 박스 - 문구 */
 .underText{
     font-size: 2vh;
     font-weight: bold;
-    margin-left: 5%;
+    margin-left: 1%;
+}
+
+.middle{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 회원가입 페이지 로그인 부분 박스 */
