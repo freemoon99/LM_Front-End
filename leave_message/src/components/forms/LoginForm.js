@@ -14,9 +14,6 @@ function LoginForm() {
     const [button, setButton] = useState(true);
 
     const navigate = useNavigate();
-    const goMain = () => {
-        navigate('/');
-    }
 
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
@@ -55,34 +52,16 @@ function LoginForm() {
             return;    
         }
 
-        // axios({
-        //     method: 'post',
-        //     url: 'http://13.124.86.178:8000/user/login/',
-        //     data: {
-        //         email: idInput,
-        //         password: pwInput,
-        //     },
-        //     headers: {
-        //         'ContentType':'applicaiont/json'
-        //     },
-        // }).then((res)=>{console.log(res.data)})
-        // .catch((err)=>{console.log(err)});
-
         axios.post(`${proxy['proxy']}/user/login/`, {
             email: inputId,
             password: inputPw,
         })
-        .then(function(response){
-            console.log(response);
+        .then((res)=>{
+            console.log(res.data);
+            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('name',res.data.name);
+            if(localStorage.getItem('token')) {navigate('/');}
         })
-        .catch(function(err){
-            console.log(err);
-        })
-        // .catch(function(error){
-        // console.log(error);
-        // });
-
-        // goMain();
     }
         
     return (

@@ -1,15 +1,9 @@
 import { useState } from "react";
 import "../styles/components/MenuList.css";
 import SurveyModal from "./modals/SurveyModal";
+import { useNavigate, useNavigate } from "react-router-dom";
 
 const MenuList = () => {
-    const [menuList] = useState([
-        ['작성하기.', '못다한 이야기를 남겨보세요.'],
-        ['수정하기.', '이야기를 수정해 보세요.'],
-        ['삭제하기.', '이야기를 지우시겠어요?'],
-        ['코드 입력하기.', '이메일 회신 코드를 입력해주세요.']
-    ]);
-    const [showModal, setShowModal] = useState(false);
 
     function clickMenu(index){
         switch(index){
@@ -31,8 +25,9 @@ const MenuList = () => {
     }
 
     function createPost(){
-        // 토큰이 있으면
-        checkDepression();
+        localStorage.getItem('token') 
+        ? checkDepression()
+        : navigate('/login');
     }
     function updatePost(){
         // 작성된 유서가 있으면
@@ -69,6 +64,17 @@ const MenuList = () => {
         }
         return list;
     }
+
+    const navigate = useNavigate();
+
+    const [menuList] = useState([
+        ['작성하기.', '못다한 이야기를 남겨보세요.'],
+        ['수정하기.', '이야기를 수정해 보세요.'],
+        ['삭제하기.', '이야기를 지우시겠어요?'],
+        ['코드 입력하기.', '이메일 회신 코드를 입력해주세요.']
+    ]);
+    
+    const [showModal, setShowModal] = useState(false);
 
     return(
         <div className="MenuList">
