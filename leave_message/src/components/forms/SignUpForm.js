@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
 import axios from 'axios';
 import proxy from '../../security/Security.json'
+import { useNavigate } from 'react-router-dom';
 
 
 function SignUpForm() {
@@ -31,6 +32,7 @@ function SignUpForm() {
                 email:userData.userEmail,
             })
             .then((res)=>{
+                alert('메일이 전송되었습니다.');
                 const tmpCode = res.data.code;
                 setCheckCode(tmpCode);
             })
@@ -109,13 +111,13 @@ function SignUpForm() {
             password:userData.userPw,
             name:userData.userName,
         })
-        .then(function(response){
-            console.log(response);
-        })
+        .then((res)=>{navigate('/login')})
         .catch(function(error){
             console.log(error);
         });
     }
+
+    const navigate = useNavigate();
 
     const authCodeRef = useRef();
     const userPwCheckRef = useRef();

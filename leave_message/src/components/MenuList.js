@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/components/MenuList.css";
 import SurveyModal from "./modals/SurveyModal";
-import { useNavigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MenuList = () => {
 
