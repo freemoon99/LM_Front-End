@@ -2,9 +2,16 @@ import '../../styles/components/modals/ResultModal.css'
 import { Modal } from "react-bootstrap";
 
 const ResultModal = (props) => {
-    function showCreate(){
-        window.location.href = '/create';
-        return;
+    function showPage(){
+        if(props.pagestate === 0){
+            window.location.href = '/create';
+            return;
+        }
+        else{
+            window.location.href = '/update';
+            return;
+        }
+        
     }
 
     function resultBody() {
@@ -46,8 +53,9 @@ const ResultModal = (props) => {
                     <div onClick={props.onHide}>
                         뒤로가기
                     </div>
-                    <div onClick={showCreate}>
-                        작성하기
+                    <div onClick={showPage}>
+                        {props.pagestate === 0
+                        ?"작성하기":"수정하기"}
                     </div>
                 </div>
             )
