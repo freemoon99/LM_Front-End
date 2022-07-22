@@ -131,6 +131,7 @@ const SurveyModal = (props) => {
                 show = {showResult}
                 onHide = {()=> setShowResult(false)}
                 state = {`${resultState}`}
+                pagestate = {props.state}
             />
         </div>
     );

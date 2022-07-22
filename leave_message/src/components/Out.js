@@ -1,30 +1,46 @@
 import "../styles/components/Out.css";
+import axios from "axios";
+import proxy from "../security/Security.json"
 
 function logoutHandler()
 {
-    console.log('로그아웃');
-    // 1.
-    // window.comfirm()
-    // localStorage.removeItem(key)
-    // localStorage.clear()
-    // navigate('/login')
+    if(window.confirm('로그아웃 하시겠습니까?')){
+        axios.post(`${proxy['proxy']}/user/logout/`, {
+        },{
+            headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        .then(function(response){
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            window.location.replace('/login');
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
 }
 
 function byeHandler()
 {
-    console.log('회원탈퇴');
-    // 2.
-    // window.comfirm()
-    // axios({
-    //     method: 'delete',
-    //     url: '/user?ID=****',
-    //     data: {
-    //         token: 'token'
-    //     }
-    // })
-    // localStorage.removeItem(key)
-    // localStorage.clear()
-    // navigate('/login')
+    if(window.confirm('회원탈퇴 하시겠습니까?\n작성한 이야기가 사라집니다.')){
+        axios.post(`${proxy['proxy']}/user/signout/`, {
+            token: localStorage.getItem("token")
+        },{
+            headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        .then(function(response){
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            window.location.replace('/login');
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
 }
 
 const Out = () => {
