@@ -1,8 +1,8 @@
 import { React, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../../styles/components/forms/LoginForm.css'
 import axios from 'axios';
 import proxy from '../../security/Security.json'
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
 
@@ -14,7 +14,6 @@ function LoginForm() {
     const [button, setButton] = useState(true);
 
     const navigate = useNavigate();
-
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
         setInputId(e.target.value);

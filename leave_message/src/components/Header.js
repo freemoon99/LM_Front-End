@@ -5,7 +5,7 @@ import { useState } from 'react';
 const Header = ({pageName}) => {
 
     const [ titleDate ] = useState({
-        main : {textTitle : localStorage.getItem('name'), textBtn : '설정'},
+        main : {textTitle : localStorage.getItem('name')+".", textBtn : '설정'},
         create : {textTitle : '작성하기.', textBtn : '뒤로가기'},
         update : {textTitle : '수정하기.', textBtn : '뒤로가기'},
         setting : {textTitle : '설정', textBtn : '뒤로가기'},
