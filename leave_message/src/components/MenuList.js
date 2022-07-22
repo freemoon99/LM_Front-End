@@ -133,7 +133,17 @@ const MenuList = () => {
     function deletePost(){
         // 작성된 유서가 있으면
         if (window.confirm("당신의 이야기가 사라집니다.\n정말 삭제하시겠습니까?")){
-            //삭제
+            axios.post(`${proxy['proxy']}/post/delete/`, 
+            { 
+                token : localStorage.getItem('token')
+            },
+            { 
+                headers : { 
+                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{ if(res.status === 200) { alert('삭제되었습니다.'); }})
+            .catch((err)=>{console.log(err)})
         }
     }
 
@@ -166,7 +176,7 @@ const MenuList = () => {
                     'Authorization' :`Token ${localStorage.getItem('token')}`
                 }
             })
-            .then((res)=>{ if(res.status === 200) { InputHandler }})
+            .then((res)=>{ if(res.status === 200) { InputHandler() }})
             .catch(()=>{alert('발송된 코드가 없습니다.')})
     }
 
