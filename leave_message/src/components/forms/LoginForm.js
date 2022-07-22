@@ -1,8 +1,8 @@
 import { React, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../../styles/components/forms/LoginForm.css'
 import axios from 'axios';
 import proxy from '../../security/Security.json'
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
 
@@ -14,10 +14,6 @@ function LoginForm() {
     const [button, setButton] = useState(true);
 
     const navigate = useNavigate();
-    const goMain = () => {
-        navigate('/');
-    }
-
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
         setInputId(e.target.value);
@@ -55,34 +51,18 @@ function LoginForm() {
             return;    
         }
 
-        // axios({
-        //     method: 'post',
-        //     url: 'http://13.124.86.178:8000/user/login/',
-        //     data: {
-        //         email: idInput,
-        //         password: pwInput,
-        //     },
-        //     headers: {
-        //         'ContentType':'applicaiont/json'
-        //     },
-        // }).then((res)=>{console.log(res.data)})
-        // .catch((err)=>{console.log(err)});
-
         axios.post(`${proxy['proxy']}/user/login/`, {
             email: inputId,
             password: inputPw,
         })
         .then(function(response){
-            console.log(response);
+            localStorage.setItem('token',response.data.token);
+            localStorage.setItem('name',response.data.name);
+            if(localStorage.getItem('token')){navigate('/');}
         })
         .catch(function(err){
             console.log(err);
         })
-        // .catch(function(error){
-        // console.log(error);
-        // });
-
-        // goMain();
     }
         
     return (

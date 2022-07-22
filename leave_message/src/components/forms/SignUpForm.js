@@ -1,15 +1,16 @@
 import React, { useState, useRef } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
+import axios from 'axios';
+import proxy from '../../security/Security.json'
+
 
 function SignUpForm() {
-    // const [btn, setBtn] = useState(true);
-
-    // function changeBtn(){
-    //     inputId.includes('@') && inputPw.length >= 5 ? setBtn(false) :setBtn(true);
-    // }
-
+    
     function handleAuthCode(e) { setAuthCode(e.target.value)};
     function handlePwCheck(e) { setUserPwCheck(e.target.value)};
+
+    const [ checkCode, setCheckCode ] = useState('');
+
     //이메일 유효성 검사
     function emailCheck()
     {
@@ -23,9 +24,37 @@ function SignUpForm() {
             });
             userEmailRef.current.focus();
             return;
+        } 
+        else if(regExp.test(userData.userEmail) === true) 
+        {
+            axios.post(`${proxy['proxy']}/user/emailcheck/`, {
+                email:userData.userEmail,
+            })
+            .then((res)=>{
+                const tmpCode = res.data.code;
+                setCheckCode(tmpCode);
+            })
+            .catch((err)=>{console.log(err)})
         }
     }
 
+    console.log(checkCode);
+
+    function authcodeCheck()
+    {
+        if(checkCode === authCode)
+        {
+            setAuthEmail(true);
+            alert('인증되었습니다')
+            console.log(authEmail);
+        } else{
+            alert('다시 인증해주세요')
+            authCodeRef.current.focus();
+            setAuthCode('');
+        }
+        console.log(authCode);
+    }
+    
     const handleChangeData = (e) => {
         setUserData({
             ...userData,
@@ -73,6 +102,18 @@ function SignUpForm() {
             userPwCheckRef.current.focus();
             return;
         }
+
+        axios.post(`${proxy['proxy']}/user/signup/`, {
+            email:userData.userEmail,
+            password:userData.userPw,
+            name:userData.userName,
+        })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     }
 
     const authCodeRef = useRef();
@@ -91,10 +132,12 @@ function SignUpForm() {
     const [ authEmail, setAuthEmail ] = useState(false);
     // 서버에 보낼 데이터 상태 저장
     const [ userData, setUserData ] = useState({
-        userName : "",
         userEmail : "",
         userPw : "",
+        userName : "",
     });
+
+    console.log(authEmail);
 
     return (
         <div className='signBox'>
@@ -108,7 +151,7 @@ function SignUpForm() {
             
             <div className='pwConfirm'>
                 <input type='text' id='certification' placeholder='인증코드' value={authCode} ref={authCodeRef} onChange={handleAuthCode}/>
-                <button className='confirm'>확인</button>
+                <button className='confirm' onClick={authcodeCheck}>확인</button>
             </div>
             
             <input type='password' id='password' placeholder='비밀번호' value={userData.userPw} name="userPw" ref={userPwRef} onChange={handleChangeData}/>
