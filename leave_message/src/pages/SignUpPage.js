@@ -15,12 +15,15 @@ function SignUpPage() {
     return (
         <div className='fullBox'>
             <div className='head'>
-                <div className='titleText'>남김.</div>
-                <div className='underText'>못다한 이야기를 남겨보세요.</div>
+                <div id='bbox'>
+                    <div className='titleText'>남김.</div>
+                    <div className='underText'>못다한 이야기를 남겨보세요.</div>
+                </div>
+                
             </div>
-
-            <SignUpForm />
-            
+            <div className='middle'>
+                <SignUpForm />
+            </div>
             <div className='bottom'>
                 <div className='loginBtn' onClick={loginHandler}>로그인</div>
             </div>
