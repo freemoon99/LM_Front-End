@@ -2,11 +2,6 @@ import React, { useState, useRef } from 'react';
 import '../../styles/components/forms/SignUpForm.css'
 
 function SignUpForm() {
-    // const [btn, setBtn] = useState(true);
-
-    // function changeBtn(){
-    //     inputId.includes('@') && inputPw.length >= 5 ? setBtn(false) :setBtn(true);
-    // }
 
     function handleAuthCode(e) { setAuthCode(e.target.value)};
     function handlePwCheck(e) { setUserPwCheck(e.target.value)};
@@ -31,6 +26,7 @@ function SignUpForm() {
             ...userData,
             [e.target.name]: e.target.value,
         });
+        console.log(e.target.name);
     }
 
     function signUpHandler()
@@ -87,7 +83,8 @@ function SignUpForm() {
     const [ authCode, setAuthCode ] = useState('');
     // 비밀번호 확인 값 상태 저장
     const [ userPwCheck, setUserPwCheck ] = useState('');
-    // 이메일 인증 여부 상태 저장   
+
+    // 이메일 인증 여부 상태 저장
     const [ authEmail, setAuthEmail ] = useState(false);
     // 서버에 보낼 데이터 상태 저장
     const [ userData, setUserData ] = useState({
