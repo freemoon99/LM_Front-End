@@ -32,14 +32,13 @@ function SignUpForm() {
                 email:userData.userEmail,
             })
             .then((res)=>{
-                alert('메일이 전송되었습니다.');
+                alert('메일이 전송되었습니다.'); 
                 const tmpCode = res.data.code;
                 setCheckCode(tmpCode);
             })
-            .catch((err)=>{console.log(err)})
+            .catch((err)=>{console.log(err);})  
         }
     }
-
     console.log(checkCode);
 
     function authcodeCheck()
@@ -125,8 +124,6 @@ function SignUpForm() {
     const userEmailRef = useRef();
     const userPwRef = useRef();
 
-    // 이메일 구조 정의
-    const structure = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     // 인증 코드 상태 저장
     const [ authCode, setAuthCode ] = useState('');
     // 비밀번호 확인 값 상태 저장

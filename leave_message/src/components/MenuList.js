@@ -41,7 +41,7 @@ const MenuList = () => {
             { token: localStorage.getItem('token') },
             { 
                 headers: {
-                    'Authorization':`Token ${localStorage.getItem('token')}`
+                    Authorization:`Token ${localStorage.getItem('token')}`
                 }
             })
             .then((res)=>{
@@ -71,7 +71,7 @@ const MenuList = () => {
             { token: localStorage.getItem('token') },
             { 
                 headers: {
-                    'Authorization':`Token ${localStorage.getItem('token')}`
+                    Authorization:`Token ${localStorage.getItem('token')}`
                 }
             })
             .then((res)=>{
@@ -101,7 +101,7 @@ const MenuList = () => {
             { token : localStorage.getItem('token') },
             { 
                 headers : { 
-                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                    Authorization :`Token ${localStorage.getItem('token')}`
                 }
             })
             .then((res)=>{console.log(res)})
@@ -133,8 +133,18 @@ const MenuList = () => {
     function deletePost(){
         // 작성된 유서가 있으면
         if (window.confirm("당신의 이야기가 사라집니다.\n정말 삭제하시겠습니까?")){
-            //삭제
-            
+
+            axios.post(`${proxy['proxy']}/post/delete/`, 
+            { 
+                token : localStorage.getItem('token')
+            },
+            { 
+                headers : { 
+                    Authorization :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{ if(res.status === 200) { alert('삭제되었습니다.'); }})
+            .catch((err)=>{console.log(err)})
         }
     }
 
@@ -143,14 +153,14 @@ const MenuList = () => {
         const lifecode = window.prompt('이메일에 수신된 코드를 입력해주세요.');
         if(lifecode)
         {
-            axios.post(`${proxy['proxy']}/lifecode/`, 
+            axios.post(`${proxy['proxy']}/user/lifecode/`,
             { 
-                token : localStorage.getItem('token'),
+                token : localStorage.getItem('token'),  
                 lifecode : lifecode,
             },
             { 
                 headers : { 
-                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                    Authorization :`Token ${localStorage.getItem('token')}`
                 }
             })
             .then((res)=>{ if(res.status === 200) { alert('인증되었습니다.'); }})
@@ -160,14 +170,14 @@ const MenuList = () => {
 
     function checkLife(){
         // 인증코드를 발송했으면
-        axios.post(`${proxy['proxy']}/lifecodecheck/`, 
+        axios.post(`${proxy['proxy']}/user/lifecodecheck/`, 
             { token : localStorage.getItem('token') },
             { 
                 headers : { 
-                    'Authorization' :`Token ${localStorage.getItem('token')}`
+                    Authorization :`Token ${localStorage.getItem('token')}`
                 }
             })
-            .then((res)=>{ if(res.status === 200) { InputHandler }})
+            .then((res)=>{ if(res.status === 200) { InputHandler() }})
             .catch(()=>{alert('발송된 코드가 없습니다.')})
     }
 
@@ -192,10 +202,34 @@ const MenuList = () => {
         return list;
     }
 
+    function rigthNow()
+    {
+        if(localStorage.getItem('token'))
+        {
+            axios.post(`${proxy['proxy']}/post/send/`, 
+            { token : localStorage.getItem('token') },
+            { 
+                headers : { 
+                    Authorization :`Token ${localStorage.getItem('token')}`
+                }
+            })
+            .then((res)=>{
+                console.log(res.data); // res.data ->
+                alert('메일이 전송되었습니다.');
+            })
+        }
+        else
+        {
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+        }
+    }
+
     const navigate = useNavigate();
 
     return(
         <div className="MenuList">
+            <button onClick={rigthNow}>즉시 전송</button>
             <div className="MenuList_Box">
                 {showMenu()}
             </div>

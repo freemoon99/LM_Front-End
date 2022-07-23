@@ -3,6 +3,7 @@ import '../../styles/components/forms/CreateForm.css';
 import InfoModal from '../modals/InfoModal';
 import axios from 'axios';
 import proxy from '../../security/Security.json'
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateForm = ({state}) => {
@@ -119,6 +120,8 @@ const CreateForm = ({state}) => {
 
         sendPost();
     }
+
+    const navigate = useNavigate();
     function sendPost(){
         if(state==='update'){
             if(window.confirm('이야기를 수정하시겠어요?')){
@@ -135,7 +138,8 @@ const CreateForm = ({state}) => {
                     }
                 })
                 .then(function(response){
-                    window.location.replace('/');
+                    // window.location.replace('/');
+                    navigate('/');
                 })
                 .catch(function(err){
                     console.log(err);
